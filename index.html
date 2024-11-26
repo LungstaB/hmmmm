@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday, Mntomuhle</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            color: white;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            line-height: 1.6;
+            background: url('photo4.jpg') no-repeat center center fixed;
+            background-size: cover;
+        }
+
+        header {
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.6);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        p {
+            font-size: 1.2rem;
+        }
+
+        section {
+            margin: 2rem auto;
+            padding: 2rem;
+            background: rgba(0, 0, 0, 0.7);
+            border-radius: 10px;
+            max-width: 800px;
+            color: #fff;
+        }
+
+        .photos {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .photos img {
+            width: 250px;
+            height: 350px;
+            object-fit: cover;
+            border-radius: 12px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .game-section {
+            text-align: left;
+        }
+
+        .game-question {
+            margin: 1.5rem 0;
+        }
+
+        .game-options {
+            margin: 1rem 0;
+        }
+
+        .game-options button {
+            background-color: #444;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .game-options button:hover {
+            background-color: #666;
+        }
+
+        .game-feedback {
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: #FFD700;
+        }
+
+        footer {
+            margin-top: 2rem;
+            font-size: 1rem;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 1rem;
+        }
+    </style>
+    <script>
+        // Shuffle answers for each question
+        function shuffle(array) {
+            for (let i = array.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [array[i], array[j]] = [array[j], array[i]];
+            }
+        }
+
+        // Initialize the game
+        function initGame() {
+            const questions = [
+                {
+                    question: "What day did I send you that first DM?",
+                    answers: [
+                        { text: "Sunday", correct: true },
+                        { text: "Saturday", correct: false },
+                    ]
+                },
+                {
+                    question: "What was our very first inside joke?",
+                    answers: [
+                        { text: "Double Identities - uAlizwa noNasiphi", correct: true },
+                        { text: "uFabulous", correct: false },
+                    ]
+                },
+                {
+                    question: "What do I absolutely adore the most about you?",
+                    answers: [
+                        { text: "Your voice and your laughter", correct: true },
+                        { text: "Your smile", correct: false },
+                    ]
+                },
+                {
+                    question: "Which identity did I like first?",
+                    answers: [
+                        { text: "uAlizwa", correct: true },
+                        { text: "uNasiphi", correct: false },
+                    ]
+                },
+                {
+                    question: "Do you think uLungile loves you?",
+                    answers: [
+                        { text: "Of course she does, what is there not to love?", correct: true },
+                        { text: "Not really (which is crazy).", correct: false },
+                    ]
+                },
+            ];
+
+            const container = document.getElementById("game-container");
+            container.innerHTML = ""; // Clear previous content
+
+            questions.forEach((q, index) => {
+                const section = document.createElement("div");
+                section.classList.add("game-question");
+
+                const questionTitle = document.createElement("p");
+                questionTitle.innerHTML = `<strong>Question ${index + 1}:</strong> ${q.question}`;
+                section.appendChild(questionTitle);
+
+                const optionsContainer = document.createElement("div");
+                optionsContainer.classList.add("game-options");
+
+                // Shuffle answers before displaying
+                shuffle(q.answers);
+
+                q.answers.forEach((answer) => {
+                    const button = document.createElement("button");
+                    button.textContent = answer.text;
+                    button.onclick = () => {
+                        const feedback = document.createElement("div");
+                        feedback.classList.add("game-feedback");
+                        if (answer.correct) {
+                            feedback.textContent = "Correct! 🎉";
+                        } else {
+                            feedback.textContent = "Oops, that's not right. 😔";
+                        }
+                        // Remove previous feedback and add new
+                        section.querySelector(".game-feedback")?.remove();
+                        section.appendChild(feedback);
+                    };
+                    optionsContainer.appendChild(button);
+                });
+
+                section.appendChild(optionsContainer);
+                container.appendChild(section);
+            });
+        }
+
+        // Run the game initialization after page loads
+        window.onload = initGame;
+    </script>
+</head>
+<body>
+    <header>
+        <h1>Sawubona Mntomuhle</h1>
+        <p>Of all the days I’ve had to express myself, today feels like the hardest...</p>
+    </header>
+
+    <!-- Section 1: Message -->
+    <section>
+        <h2>A Message from the Heart</h2>
+        <!-- Full message content here -->
+    </section>
+
+    <!-- Section 2: Photos -->
+    <section>
+        <h2>Snapshots of My Heart</h2>
+        <div class="photos">
+            <img src="photo1.jpg" alt="Photo 1">
+            <img src="photo2.jpg" alt="Photo 2">
+            <img src="photo3.jpg" alt="Photo 3">
+        </div>
+    </section>
+
+    <!-- Section 3: What I Appreciate About You -->
+    <section>
+        <h2>What I Appreciate About You</h2>
+        <!-- Full appreciation message here -->
+    </section>
+
+    <!-- Section 5: Interactive Game -->
+    <section class="game-section">
+        <h2>Do you remember? Cos I do.</h2>
+        <div id="game-container"></div>
+    </section>
+
+    <footer>
+        <p>I hope you liked this. And I hope it awarded me at least 10 minutes of your time later on? Please let me know. Ngyakthanda and Happy Birthday!</p>
+    </footer>
+</body>
+</html>
